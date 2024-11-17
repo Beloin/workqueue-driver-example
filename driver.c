@@ -15,16 +15,23 @@ MODULE_DESCRIPTION(DRIVER_DESC);
 // (name)) #define create_singlethread_workqueue(name) alloc_workqueue("%s",
 // WQ_UNBOUND | WQ_MEM_RECLAIM, 1, (name))
 
+static struct workqueue_struct *own_workqueue;
+
 static void workqueue_fn(struct work_struct *work);
 
 static DECLARE_WORK(work, workqueue_fn);
 
 int init_module(void) {
-  struct workqueue_struct *myqw = create_workqueue("beloinswq");
+  own_workqueue = create_workqueue("beloinswq");
   printk(KERN_INFO "Initializing Workqueue register");
   return 0;
 }
 
 void cleanup_module(void) { printk(KERN_INFO "Ending Workqueue register"); }
 
-static void workqueue_fn(struct work_struct *work) {}
+static void workqueue_fn(struct work_struct *work) {
+  printk(KERN_INFO "Executing %s Workqueue Function\n", "beloinswq");
+  // FILE *f = fopen("/home/beloin/mywq.log", "a");
+  // fprintf(f, "Logged in %s\n");
+  return;
+}
