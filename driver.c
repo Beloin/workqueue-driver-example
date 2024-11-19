@@ -1,4 +1,3 @@
-volatile int etx_value;
 #include <asm/io.h>
 #include <linux/cdev.h>
 #include <linux/device.h>
