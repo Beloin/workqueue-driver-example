@@ -21,6 +21,7 @@
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
+MODULE_VERSION("0.0.1");
 
 static struct workqueue_struct *own_workqueue;
 
@@ -134,6 +135,10 @@ static ssize_t etx_read(struct file *filp, char __user *buf, size_t len,
   printk(KERN_INFO "Read function\n");
   // TODO: Why this value? 59 in decimal - 111011 in binary
   asm("int $0x3B"); // Corresponding to irq 11
+  // if (request_irq(IRQ_NO, irq_handler, IRQF_SHARED, "etx_device",
+  //               (void *)(irq_handler))) {
+  // printk(KERN_INFO "etx_device: cannot re-register IRQ \n");
+  // }
   return 0;
 }
 
