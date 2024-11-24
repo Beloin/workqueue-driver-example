@@ -1,6 +1,6 @@
 obj-m += driver.o
  
-KDIR = /lib/modules/$(shell uname -r)/build
+KDIR = /lib/modules/6.10.13-3-MANJARO/build
 
 all:
 	make -C $(KDIR)  M=$(shell pwd) modules

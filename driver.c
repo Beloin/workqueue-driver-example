@@ -1,10 +1,8 @@
-#include <asm/io.h>
 #include <linux/cdev.h>
 #include <linux/device.h>
 #include <linux/err.h>
 #include <linux/fs.h>
 #include <linux/init.h>
-#include <linux/interrupt.h>
 #include <linux/kdev_t.h>
 #include <linux/kernel.h>
 #include <linux/kobject.h>
@@ -16,28 +14,19 @@
 
 #define DRIVER_AUTHOR "Beloin <beloin.rodrigues@gmail.com>"
 #define DRIVER_DESC "A simple Workqueue driver"
-#define IRQ_NO 11
+#define DRIVER_LICENSE "GPL"
+#define DRIVER_VERSION "0.0.1"
 
-MODULE_LICENSE("GPL");
+MODULE_LICENSE(DRIVER_LICENSE);
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
-MODULE_VERSION("0.0.1");
+MODULE_VERSION(DRIVER_VERSION);
 
 static struct workqueue_struct *own_workqueue;
 
 static void workqueue_fn(struct work_struct *work);
 
 static DECLARE_WORK(work, workqueue_fn);
-
-static irqreturn_t irq_handler(int irq, void *dev_id);
-
-static irqreturn_t irq_handler(int irq, void *dev_id) {
-  printk(KERN_INFO "Shared IRQ: Interrupt Occurred\n");
-  /*Allocating work to queue*/
-  queue_work(own_workqueue, &work);
-
-  return IRQ_HANDLED;
-}
 
 static void workqueue_fn(struct work_struct *work) {
   printk(KERN_INFO "Executing %s Workqueue Function\n", "beloinswq");
@@ -133,12 +122,9 @@ static int etx_release(struct inode *inode, struct file *file) {
 static ssize_t etx_read(struct file *filp, char __user *buf, size_t len,
                         loff_t *off) {
   printk(KERN_INFO "Read function\n");
-  // TODO: Why this value? 59 in decimal - 111011 in binary
-  asm("int $0x3B"); // Corresponding to irq 11
-  // if (request_irq(IRQ_NO, irq_handler, IRQF_SHARED, "etx_device",
-  //               (void *)(irq_handler))) {
-  // printk(KERN_INFO "etx_device: cannot re-register IRQ \n");
-  // }
+  printk(KERN_INFO "Allocating workqueue\n");
+  /*Allocating work to queue*/
+  queue_work(own_workqueue, &work);
   return 0;
 }
 
@@ -191,20 +177,12 @@ static int __init etx_driver_init(void) {
     printk(KERN_INFO "Cannot create sysfs file......\n");
     goto r_sysfs;
   }
-  if (request_irq(IRQ_NO, irq_handler, IRQF_SHARED, "etx_device",
-                  (void *)(irq_handler))) {
-    printk(KERN_INFO "my_device: cannot register IRQ \n");
-    goto irq;
-  }
 
   /*Creating workqueue */
   own_workqueue = create_workqueue("own_wq");
 
   printk(KERN_INFO "Device Driver Insert...Done!!!\n");
   return 0;
-
-irq:
-  free_irq(IRQ_NO, (void *)(irq_handler));
 
 r_sysfs:
   kobject_put(kobj_ref);
@@ -224,7 +202,6 @@ r_class:
 static void __exit etx_driver_exit(void) {
   /* Delete workqueue */
   destroy_workqueue(own_workqueue);
-  free_irq(IRQ_NO, (void *)(irq_handler));
   kobject_put(kobj_ref);
   sysfs_remove_file(kernel_kobj, &etx_attr.attr);
   device_destroy(dev_class, dev);

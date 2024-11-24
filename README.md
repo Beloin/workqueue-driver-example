@@ -2,6 +2,14 @@
 
 Idea: Create a device ` Writable | Readable ` that calls a Workqueue whenever anyone tries to write to read it.
 
+The Workqueue job is to write to a file whose value is written to the char device. Like a ping pong:
+
+```console
+user@kernel:~$ echo "~/mypong.txt ping"
+user@kernel:~$ cat ~/mypong.txt
+ping:pong
+```
+
 # Build and installation
 
 ```bash
