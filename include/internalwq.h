@@ -3,9 +3,9 @@
 // Author:      Beloin Rodrigues
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifndef SRC_INTERNALWQ_H
-#define SRC_INTERNALWQ_H
+#ifndef INTERNALWQ_H
+#define INTERNALWQ_H
 
 
 
-#endif /* SRC_INTERNALWQ_H */
+#endif /* INTERNALWQ_H */
