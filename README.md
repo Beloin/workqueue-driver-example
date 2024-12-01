@@ -35,3 +35,4 @@ sudo rmmod driver.ko
 1. [File Managment](https://docs.kernel.org/filesystems/files.html) 
 2. [Full Driver Creation](https://embetronicx.com/tutorials/linux/device-drivers/work-queue-in-linux-own-workqueue/)
 3. [Char Device Creation](https://tldp.org/LDP/lkmpg/2.4/html/c577.htm) 
+4. [Workqueue](https://www.oreilly.com/library/view/understanding-the-linux/0596005652/ch04s08.html)

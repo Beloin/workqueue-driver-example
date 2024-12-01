@@ -6,6 +6,6 @@
 #ifndef INTERNALWQ_H
 #define INTERNALWQ_H
 
-
+void execute(void);
 
 #endif /* INTERNALWQ_H */

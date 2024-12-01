@@ -6,6 +6,8 @@
 #ifndef WORKQUEUE_SETUP_H
 #define WORKQUEUE_SETUP_H
 
+#include <linux/workqueue.h>
+
 void execute_workqueue(struct work_struct *work);
 
 
