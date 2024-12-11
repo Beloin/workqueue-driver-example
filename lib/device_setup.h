@@ -8,6 +8,8 @@
 
 
 #include "linux/types.h"
+#include <linux/fs.h>
+
 #define DEVICE_NAME "pong_dev"
 
 static int dev_open(struct inode *inode, struct file *file);
