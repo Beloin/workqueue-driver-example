@@ -1,0 +1,22 @@
+@startuml Base Diagram
+
+[ pong.c ] as mainc
+[ device_setup.c ] as dev
+[ workqueue_setup.c ] as wq
+
+note left of mainc: Driver Entrypoint
+
+mainc ..> dev : Setup with Impl
+mainc ..> wq : Setup with Impl
+
+() "Device Read" as dev_rd
+
+dev ..> dev_rd
+
+dev_rd ...> wq : Start Work
+
+[ internalwq.h ] as internalwq
+
+wq ..> internalwq : It's "domain" implementation
+
+@enduml
