@@ -5,7 +5,7 @@ Idea: Create a device ` Writable | Readable ` that calls a Workqueue whenever an
 The Workqueue job is to write to a file whose value is written to the char device. Like a ping pong:
 
 ```console
-user@kernel:~$ echo "~/mypong.txt ping"
+user@kernel:~$ echo "~/mypong.txt ping" >> /sys/dev/pong
 user@kernel:~$ cat ~/mypong.txt
 ping:pong
 ```
