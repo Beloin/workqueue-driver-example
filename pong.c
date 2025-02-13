@@ -70,7 +70,7 @@ static ssize_t sysfs_store(struct kobject *kobj, struct kobj_attribute *attr,
 
 static int __init pong_driver_init(void) {
   /*Allocating Major number*/
-  if ((alloc_chrdev_region(&dev, 0, 1, "pong_Dev")) < 0) {
+  if ((alloc_chrdev_region(&dev, 0, 1, "pong_dev")) < 0) {
     printk(KERN_INFO "Cannot allocate major number\n");
     return -1;
   }
