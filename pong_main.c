@@ -1,6 +1,7 @@
 #include <linux/module.h>
 #include "device_setup.h"
 #include "linux/cdev.h"
+#include "linux/export.h"
 #include "workqueue_setup.h"
 
 #define DRIVER_AUTHOR "Beloin <beloin.rodrigues@gmail.com>"
@@ -11,8 +12,7 @@
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_VERSION(DRIVER_VERSION);
-MODULE_LICENSE(DRIVER_LICENSE);
-
+MODULE_LICENSE("GPL");
 
 /*
  * Device Setup
@@ -87,7 +87,7 @@ static int __init pong_driver_init(void) {
 
   /*Creating struct class*/
   // if (IS_ERR(dev_class = class_create(THIS_MODULE, "pong_class"))) {
-  if (IS_ERR(dev_class = class_create("pong_class"))) {
+  if (IS_ERR(dev_class = class_create(THIS_MODULE, "pong_class"))) {
     printk(KERN_INFO "Cannot create the struct class\n");
     goto r_class;
   }

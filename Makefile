@@ -1,6 +1,7 @@
-pong-objs := lib/device_setup.o lib/workqueue_setup.o
-pong-objs := src/internalwq.o # src/file_utils.o
 obj-m += pong.o
+
+# pong-m := pong_main.o
+pong-m += pong_main.o src/internalwq.o lib/device_setup.o lib/workqueue_setup.o
 
 KDIR = /lib/modules/$(shell uname -r)/build
 # KDIR = /lib/modules/6.10.13-3-MANJARO/build
