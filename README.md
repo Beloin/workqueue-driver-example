@@ -4,7 +4,7 @@ Idea: Create a device ` Writable | Readable ` that calls a Workqueue whenever an
 
 The Workqueue job is to write to a file whose value is written to the char device. Like a ping pong:
 
-```console
+```bash
 user@kernel:~$ echo "~/mypong.txt ping" >> /sys/dev/pong
 user@kernel:~$ cat ~/mypong.txt
 ping:pong
@@ -36,3 +36,4 @@ sudo rmmod driver.ko
 2. [Full Driver Creation](https://embetronicx.com/tutorials/linux/device-drivers/work-queue-in-linux-own-workqueue/)
 3. [Char Device Creation](https://tldp.org/LDP/lkmpg/2.4/html/c577.htm) 
 4. [Workqueue](https://www.oreilly.com/library/view/understanding-the-linux/0596005652/ch04s08.html)
+5. [Makefile](https://lwn.net/Articles/21835/) 

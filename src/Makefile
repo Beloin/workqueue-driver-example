@@ -1,0 +1,1 @@
+pong-y += internalwq.o
