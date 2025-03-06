@@ -1,6 +1,7 @@
 #include "linux/cdev.h"
 #include "linux/export.h"
 #include "workqueue_setup.h"
+#include "device_setup.h"
 #include <linux/module.h>
 #include <linux/fs.h>
 
@@ -37,24 +38,24 @@ static ssize_t sysfs_store(struct kobject *kobj, struct kobj_attribute *attr,
 struct kobj_attribute device_attr =
     __ATTR(pong_value, 0660, sysfs_show, sysfs_store);
 
-extern int dev_open(struct inode *inode, struct file *file);
-extern int dev_release(struct inode *inode, struct file *file);
-extern ssize_t dev_read(struct file *filp, char __user *buf, size_t len,
-                        loff_t *off);
-extern ssize_t dev_write(struct file *filp, const char *buf, size_t len,
-                         loff_t *off);
-
-extern ssize_t dev_ioctl(struct file *file, unsigned int cmd, unsigned long arg);
+// extern int dev_open(struct inode *inode, struct file *file);
+// extern int dev_release(struct inode *inode, struct file *file);
+// extern ssize_t dev_read(struct file *filp, char __user *buf, size_t len,
+//                         loff_t *off);
+// extern ssize_t dev_write(struct file *filp, const char *buf, size_t len,
+//                          loff_t *off);
+//
+// extern ssize_t dev_ioctl(struct file *file, unsigned int cmd, unsigned long arg);
 
 /*
  * File Operations
  */
 static struct file_operations fops = {
     .owner = THIS_MODULE,
-    .read = dev_read,
-    .write = dev_write,
-    .open = dev_open,
-    .release = dev_release,
+    .read = my_dev_read,
+    .write = my_dev_write,
+    .open = my_dev_open,
+    .release = my_dev_release,
     // .ioctl = dev_ioctl,
 };
 
