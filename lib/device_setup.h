@@ -26,4 +26,7 @@ static ssize_t dev_write(struct file *filp, const char *buf, size_t len,
                          loff_t *off);
 EXPORT_SYMBOL(dev_write);
 
+extern ssize_t dev_ioctl(struct file *file, unsigned int cmd, unsigned long arg);
+EXPORT_SYMBOL(dev_ioctl);
+
 #endif /* DEVICE_SETUP_H */

@@ -2,6 +2,7 @@
 #include "linux/export.h"
 #include "workqueue_setup.h"
 #include <linux/module.h>
+#include <linux/fs.h>
 
 #define DRIVER_AUTHOR "Beloin <beloin.rodrigues@gmail.com>"
 #define DRIVER_DESC "A simple Workqueue driver"
@@ -40,8 +41,11 @@ extern int dev_open(struct inode *inode, struct file *file);
 extern int dev_release(struct inode *inode, struct file *file);
 extern ssize_t dev_read(struct file *filp, char __user *buf, size_t len,
                         loff_t *off);
-extern  ssize_t dev_write(struct file *filp, const char *buf, size_t len,
+extern ssize_t dev_write(struct file *filp, const char *buf, size_t len,
                          loff_t *off);
+
+extern ssize_t dev_ioctl(struct file *file, unsigned int cmd, unsigned long arg);
+
 /*
  * File Operations
  */
@@ -51,6 +55,7 @@ static struct file_operations fops = {
     .write = dev_write,
     .open = dev_open,
     .release = dev_release,
+    // .ioctl = dev_ioctl,
 };
 
 /*
