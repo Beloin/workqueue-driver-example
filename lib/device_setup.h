@@ -6,27 +6,26 @@
 #ifndef DEVICE_SETUP_H
 #define DEVICE_SETUP_H
 
-
 #include "linux/types.h"
 #include <linux/fs.h>
 
 #define DEVICE_NAME "pong_dev"
 
-static int my_dev_open(struct inode *inode, struct file *file);
+int my_dev_open(struct inode *inode, struct file *file);
 // EXPORT_SYMBOL(my_dev_open);
 
-static int my_dev_release(struct inode *inode, struct file *file);
+int my_dev_release(struct inode *inode, struct file *file);
 // EXPORT_SYMBOL(my_dev_release);
 
-static ssize_t my_dev_read(struct file *filp, char __user *buf, size_t len,
-                        loff_t *off);
+ssize_t my_dev_read(struct file *filp, char __user *buf, size_t len,
+                    loff_t *off);
 // EXPORT_SYMBOL(my_dev_read);
 
-static ssize_t my_dev_write(struct file *filp, const char *buf, size_t len,
-                         loff_t *off);
+ssize_t my_dev_write(struct file *filp, const char *buf, size_t len,
+                     loff_t *off);
 // EXPORT_SYMBOL(my_dev_write);
 
-extern ssize_t my_dev_ioctl(struct file *file, unsigned int cmd, unsigned long arg);
+ssize_t my_dev_ioctl(struct file *file, unsigned int cmd, unsigned long arg);
 // EXPORT_SYMBOL(my_dev_ioctl);
 
 #endif /* DEVICE_SETUP_H */
