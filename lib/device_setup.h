@@ -12,7 +12,11 @@
 #define DEVICE_NAME "pong_dev"
 
 int my_dev_open(struct inode *inode, struct file *file);
-// EXPORT_SYMBOL(my_dev_open);
+// int my_dev_open(struct inode *inode, struct file *file) {
+//   printk(KERN_INFO "my_device File Opened...!!!\n");
+//   return 0;
+// }
+EXPORT_SYMBOL(my_dev_open);
 
 int my_dev_release(struct inode *inode, struct file *file);
 // EXPORT_SYMBOL(my_dev_release);
