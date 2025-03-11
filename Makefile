@@ -1,10 +1,12 @@
 obj-m += pong_core.o
 
 # Force same module linkage
-pong_core-y := pong_main.o
+pong_core-objs += pong_main.o
 
-obj-y += src/
-obj-y += lib/
+pong_core-objs += lib/device_setup.o lib/workqueue_setup.o
+pong_core-objs += src/internalwq.o
+# pong_core-objs += src/
+# pong_core-objs += lib/
 
 KDIR = /lib/modules/$(shell uname -r)/build
 # KDIR = /lib/modules/6.10.13-3-MANJARO/build
