@@ -14,7 +14,7 @@ ping:pong
 
 ```bash
 sudo make;
-sudo inmod driver.ko; # This installs driver
+sudo inmod pong_core.ko; # This installs driver
 ```
 
 # Usage
@@ -27,7 +27,7 @@ sudo dmesg;
 # Remove from Kernel modules
 
 ```bash
-sudo rmmod driver.ko
+sudo rmmod pong_core.ko
 ```
 
 # Resources
