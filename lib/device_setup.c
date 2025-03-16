@@ -22,7 +22,7 @@ ssize_t my_dev_read(struct file *filp, char __user *buf, size_t len,
 
 ssize_t my_dev_write(struct file *filp, const char *buf, size_t len,
                      loff_t *off) {
-  printk(KERNEL_INFO "Starting write\n");
+  printk(KERN_INFO "Starting write\n");
   char out[len + 1];
   for (int i = 0; i < len; i++) {
     out[i] = buf[0];
