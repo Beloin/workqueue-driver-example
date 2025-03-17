@@ -23,13 +23,13 @@ ssize_t my_dev_read(struct file *filp, char __user *buf, size_t len,
 ssize_t my_dev_write(struct file *filp, const char *buf, size_t len,
                      loff_t *off) {
   printk(KERN_INFO "Starting write\n");
-  char out[len + 1];
-  for (int i = 0; i < len; i++) {
-    out[i] = buf[0];
+  char user_input[len + 1];
+  if (copy_from_user(user_input, buf, len)) {
+      return -EFAULT;
   }
-  out[len] = '\0';
+  user_input[len] = '\0';
 
-  printk(KERN_INFO "Write Function, Called by %s\n", out);
+  printk(KERN_INFO "Write Function, Called with data %s\n", user_input);
   /*Allocating work to queue*/
   // queue_work(own_workqueue, &work);
   return 0;
