@@ -8,10 +8,12 @@
 
 #include <linux/workqueue.h>
 
-void execute_workqueue(struct work_struct *work);
+void workqueue_handler(struct work_struct *work) {
+  printk(KERN_INFO "Executing %s Workqueue Function\n", "beloinswq");
+}
 
-static struct workqueue_struct *own_workqueue;
+struct workqueue_struct *own_workqueue;
 
-static DECLARE_WORK(work, execute_workqueue);
+static DECLARE_WORK(my_work, workqueue_handler);
 
 #endif /* WORKQUEUE_SETUP_H */

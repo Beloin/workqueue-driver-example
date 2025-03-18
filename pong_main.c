@@ -1,6 +1,5 @@
 #include "linux/cdev.h"
 #include "linux/export.h"
-#include "workqueue_setup.h"
 #include "device_setup.h"
 #include <linux/module.h>
 #include <linux/fs.h>
@@ -46,6 +45,8 @@ struct kobj_attribute device_attr =
 //                          loff_t *off);
 //
 // extern ssize_t dev_ioctl(struct file *file, unsigned int cmd, unsigned long arg);
+
+extern struct workqueue_struct *own_workqueue;
 
 /*
  * File Operations

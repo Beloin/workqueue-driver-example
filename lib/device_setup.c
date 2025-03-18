@@ -1,5 +1,5 @@
 #include "device_setup.h"
-// #include <workqueue_setup.h>
+#include <workqueue_setup.h>
 
 int my_dev_open(struct inode *inode, struct file *file) {
   printk(KERN_INFO "my_device File Opened...!!!\n");
@@ -31,7 +31,7 @@ ssize_t my_dev_write(struct file *filp, const char *buf, size_t len,
 
   printk(KERN_INFO "Write Function, Called with data %s\n", user_input);
   /*Allocating work to queue*/
-  // queue_work(own_workqueue, &work);
+  queue_work(own_workqueue, &my_work);
   return 0;
 }
 
