@@ -7,11 +7,11 @@
 #define WORKQUEUE_SETUP_H
 
 #include <linux/workqueue.h>
+#include "internalwq.h"
 
-void workqueue_handler(struct work_struct *work) {
-  printk(KERN_INFO "Executing %s Workqueue Function\n", "beloinswq");
-}
+void workqueue_handler(struct work_struct *work);
 
+// Multiple defitions :(
 struct workqueue_struct *own_workqueue;
 
 static DECLARE_WORK(my_work, workqueue_handler);
