@@ -12,7 +12,7 @@
 void workqueue_handler(struct work_struct *work);
 
 // Multiple defitions :(
-struct workqueue_struct *own_workqueue;
+extern struct workqueue_struct *own_workqueue;
 
 static DECLARE_WORK(my_work, workqueue_handler);
 

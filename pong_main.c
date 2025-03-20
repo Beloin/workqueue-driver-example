@@ -37,16 +37,9 @@ static ssize_t sysfs_store(struct kobject *kobj, struct kobj_attribute *attr,
 struct kobj_attribute device_attr =
     __ATTR(pong_value, 0660, sysfs_show, sysfs_store);
 
-// extern int dev_open(struct inode *inode, struct file *file);
-// extern int dev_release(struct inode *inode, struct file *file);
-// extern ssize_t dev_read(struct file *filp, char __user *buf, size_t len,
-//                         loff_t *off);
-// extern ssize_t dev_write(struct file *filp, const char *buf, size_t len,
-//                          loff_t *off);
-//
-// extern ssize_t dev_ioctl(struct file *file, unsigned int cmd, unsigned long arg);
 
-extern struct workqueue_struct *own_workqueue;
+// External defined workqueu
+struct workqueue_struct *own_workqueue;
 
 /*
  * File Operations
