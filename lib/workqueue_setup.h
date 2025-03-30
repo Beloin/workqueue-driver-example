@@ -11,7 +11,7 @@
 
 void workqueue_handler(struct work_struct *work);
 
-// Multiple defitions :(
+// Multiple defitions, need to explict extern and create in main
 extern struct workqueue_struct *own_workqueue;
 
 static DECLARE_WORK(my_work, workqueue_handler);

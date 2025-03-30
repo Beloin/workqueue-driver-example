@@ -37,3 +37,4 @@ sudo rmmod pong_core.ko
 3. [Char Device Creation](https://tldp.org/LDP/lkmpg/2.4/html/c577.htm) 
 4. [Workqueue](https://www.oreilly.com/library/view/understanding-the-linux/0596005652/ch04s08.html)
 5. [Makefile](https://lwn.net/Articles/21835/) 
+6. [Test driver](https://stackoverflow.com/questions/26077140/how-to-test-your-own-linux-module)
